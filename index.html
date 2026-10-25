@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#1f3a2d">
+  <title>Wreath Wonders · Individually crafted wreaths &amp; decorations</title>
+  <meta name="description" content="Individually crafted floral wreaths, table decorations and free-standing pieces for spring, autumn, Halloween and Christmas.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Wreath Wonders">
+  <meta property="og:description" content="Individually crafted wreaths, table decorations and free-standing Christmas decorations.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='15' fill='none' stroke='%236f9a7e' stroke-width='7' stroke-linecap='round' stroke-dasharray='5 4.42'/%3E%3Ccircle cx='24' cy='24' r='15' fill='none' stroke='%23a9cdb2' stroke-width='3.4' stroke-linecap='round' stroke-dasharray='2.6 6.82' stroke-dashoffset='-4.71'/%3E%3Ccircle cx='20' cy='38.6' r='2.7' fill='%23d24b3e'/%3E%3Ccircle cx='25.6' cy='39.6' r='2.7' fill='%23d24b3e'/%3E%3Ccircle cx='23.2' cy='35.4' r='2.3' fill='%23e8665a'/%3E%3C/svg%3E">
+  <link rel="preload" href="fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <script>document.documentElement.classList.add('js');</script>
+  <style>
+    /* Fraunces (SIL Open Font License, see fonts/OFL.txt) */
+    @font-face {
+      font-family: "Fraunces";
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url("fonts/fraunces-latin-wght-normal.woff2") format("woff2");
+    }
+
+    @font-face {
+      font-family: "Fraunces";
+      font-style: italic;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url("fonts/fraunces-latin-wght-italic.woff2") format("woff2");
+    }
+
+    :root {
+      --evergreen: #1f3a2d;
+      --evergreen-soft: #2d4c3c;
+      --evergreen-deep: #15281f;
+      --cream: #fbf6ec;
+      --paper: #fffdf8;
+      --ink: #2a2520;
+      --muted: #6b6157;
+      --line: #e7dccb;
+      --gold: #d1ad66;
+      --gold-soft: #ead6a6;
+      --gold-deep: #8a6420;
+      --berry: #a3322b;
+      --blush: #f4e6d6;
+      --on-dark: #f6f0e3;
+      --on-dark-muted: rgb(246 240 227 / .74);
+      --radius: 20px;
+      --ease: cubic-bezier(.2, .7, .2, 1);
+      --serif: "Fraunces", "Iowan Old Style", Georgia, serif;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --evergreen-deep: #0c1510;
+        --cream: #111a15;
+        --paper: #18241d;
+        --ink: #eee7da;
+        --muted: #b3ab9c;
+        --line: #2a3a31;
+        --gold-deep: #d9b878;
+        --berry: #e58f7f;
+        --blush: #1f2d25;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font: 17px/1.65 var(--sans);
+      -webkit-text-size-adjust: 100%;
+    }
+
+    img { display: block; max-width: 100%; height: auto; }
+
+    h1, h2, h3 {
+      margin: 0 0 .5em;
+      font-family: var(--serif);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -.015em;
+      text-wrap: balance;
+    }
+    h1 { font-size: clamp(3rem, 10vw, 5.6rem); }
+    h2 { font-size: clamp(2rem, 5.2vw, 3.1rem); }
+    h3 { font-size: 1.3rem; letter-spacing: -.01em; }
+    h1 em, h2 em, .brand em { font-weight: 500; }
+    h2 em { color: var(--berry); }
+    p { margin: 0 0 1em; }
+
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+    .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+    .wrap { max-width: 1160px; margin-inline: auto; padding-inline: 16px; }
+
+    @media (min-width: 720px) {
+      .wrap { padding-inline: 32px; }
+    }
+
+    .eyebrow {
+      margin-bottom: 1rem;
+      color: var(--gold-deep);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .eyebrow-berry { color: var(--berry); }
+    .intro { max-width: 36em; color: var(--muted); font-size: 1.08rem; }
+
+    /* Buttons */
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: .55em;
+      padding: .9em 1.5em;
+      overflow: hidden;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-weight: 600;
+      line-height: 1.2;
+      text-decoration: none;
+      transition: transform .3s var(--ease), box-shadow .3s var(--ease), background-color .3s, border-color .3s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn svg { flex: none; width: 1.2em; height: 1.2em; fill: currentColor; }
+    .btn-small { padding: .6em 1.15em; font-size: .92rem; }
+    .btn-gold { background: var(--gold); color: var(--evergreen-deep); box-shadow: 0 14px 30px -16px rgb(209 173 102 / .9); }
+    .btn-gold::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / .5) 50%, transparent 70%);
+      transform: translateX(-120%);
+      transition: transform .8s var(--ease);
+    }
+    .btn-gold:hover::after { transform: translateX(120%); }
+    .btn-outline { border-color: rgb(246 240 227 / .35); color: var(--on-dark); }
+    .btn-outline:hover { background: rgb(255 255 255 / .06); border-color: var(--on-dark); }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--evergreen);
+      color: var(--on-dark);
+      transition: box-shadow .4s;
+    }
+    .site-header.is-scrolled { box-shadow: 0 12px 30px -14px rgb(0 0 0 / .5); }
+
+    .bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 24px;
+      padding-block: 14px;
+    }
+
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 1.35rem; font-weight: 600; text-decoration: none; }
+    .brand svg { flex: none; width: 34px; height: 34px; }
+    .brand em { color: var(--gold); }
+    .nav { display: flex; align-items: center; gap: 24px; }
+    .nav a:not(.btn) { display: none; color: var(--on-dark-muted); font-weight: 500; text-decoration: none; transition: color .2s; }
+    .nav a:not(.btn):hover { color: var(--on-dark); }
+
+    @media (min-width: 760px) {
+      .nav a:not(.btn) { display: inline; }
+    }
+
+    @media (max-width: 479px) {
+      .site-header .bar { gap: 12px; }
+      .site-header .brand { gap: 8px; font-size: 1.1rem; }
+      .site-header .brand svg { width: 28px; height: 28px; }
+      .site-header .btn-small { padding: .5em .95em; font-size: .85rem; }
+    }
+
+    @media (max-width: 359px) {
+      .site-header .brand svg { display: none; }
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding-block: 56px 88px;
+      background: radial-gradient(ellipse 70% 80% at 80% 40%, var(--evergreen-soft), transparent 70%), var(--evergreen);
+      color: var(--on-dark);
+    }
+    .hero-grid { position: relative; z-index: 1; display: grid; gap: 48px; align-items: center; }
+
+    @media (min-width: 900px) {
+      .hero { padding-block: 80px 104px; }
+      .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 56px; }
+    }
+
+    .hero .eyebrow, .hero h1 em { color: var(--gold); }
+    .hero .lead { max-width: 31em; color: var(--on-dark-muted); font-size: clamp(1.1rem, 2.4vw, 1.25rem); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 2rem; }
+
+    .hero-art { position: relative; width: min(100%, 520px); aspect-ratio: 1; margin-inline: auto; }
+    .ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: fade 1.4s ease .5s both, spin 60s linear infinite; }
+    .ring text { fill: var(--gold); font: 600 18px var(--sans); text-transform: uppercase; }
+    .hero-photo {
+      position: absolute;
+      top: 12.5%;
+      left: 12.5%;
+      width: 75%;
+      height: 75%;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 0 0 12px rgb(246 240 227 / .07), 0 50px 90px -40px rgb(0 0 0 / .7);
+      animation: pop 1.2s var(--ease) .25s both;
+    }
+    .hero-badge {
+      position: absolute;
+      left: 5%;
+      bottom: 5%;
+      width: 30%;
+      aspect-ratio: 1;
+      color: var(--evergreen-deep);
+      text-decoration: none;
+      animation: pop .9s var(--ease) 1s both, bob 6s ease-in-out 2s infinite;
+    }
+    .hero-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 5px solid var(--evergreen);
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px var(--gold), 0 24px 40px -18px rgb(0 0 0 / .7);
+    }
+    .hero-badge span {
+      position: absolute;
+      left: 50%;
+      bottom: -12px;
+      padding: .4em .95em;
+      white-space: nowrap;
+      background: var(--gold);
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transform: translateX(-50%);
+    }
+
+    /* Leaves drifting down behind the hero (added by the script below) */
+    .leaves { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .leaf { position: absolute; top: 0; bottom: 0; left: var(--x); width: var(--s); animation: fall var(--d) linear var(--delay) infinite; }
+    .leaf svg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: var(--s);
+      height: var(--s);
+      color: var(--c);
+      fill: currentColor;
+      opacity: var(--o);
+      animation: sway calc(var(--d) / 4) ease-in-out var(--delay) infinite alternate;
+    }
+
+    .rise { animation: rise 1s var(--ease) both; animation-delay: calc(var(--i, 0) * 120ms + 150ms); }
+
+    /* Ribbon */
+    .ribbon { overflow: hidden; background: var(--gold-soft); color: var(--evergreen-deep); }
+    .ribbon-track {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      padding-block: 15px;
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-style: italic;
+      white-space: nowrap;
+      animation: marquee 40s linear infinite;
+    }
+    .ribbon-track > * { flex: none; margin-right: 26px; }
+    .ribbon svg { width: 14px; height: 14px; fill: #a3322b; }
+
+    /* Sections */
+    .section { padding-block: 88px; }
+    .section-alt { background: var(--paper); border-block: 1px solid var(--line); }
+    .section-head { margin-bottom: 44px; }
+
+    /* New for Christmas */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 22px;
+    }
+    .card {
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 30px 50px -30px rgb(40 30 20 / .4); }
+    .card-media { aspect-ratio: 1; overflow: hidden; }
+    .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
+    .card:hover .card-media img { transform: scale(1.06); }
+    .card-body { padding: 22px 24px 26px; }
+    .card-body p { margin: 0; color: var(--muted); }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+      padding: .32em .8em;
+      background: var(--blush);
+      border-radius: 999px;
+      color: var(--berry);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .03em;
+    }
+    .tag svg { width: 14px; height: 14px; fill: currentColor; }
+    .tag .line-icon, .value svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Gallery */
+    .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 14px; }
+
+    @media (min-width: 900px) {
+      .gallery { grid-template-columns: repeat(4, 1fr); gap: 30px 22px; }
+    }
+
+    .gallery figure { margin: 0; }
+    .frame { overflow: hidden; border-radius: var(--radius); isolation: isolate; }
+    .frame img { width: 100%; aspect-ratio: 1; object-fit: cover; transition: transform .9s var(--ease); }
+    .gallery figure:hover img { transform: scale(1.07); }
+    .gallery figcaption { margin-top: 10px; color: var(--muted); font-size: .92rem; line-height: 1.4; }
+    .more { display: inline-block; margin-top: 36px; color: var(--gold-deep); font-weight: 600; }
+
+    /* About */
+    .about { display: grid; gap: 12px 64px; }
+
+    @media (min-width: 900px) {
+      .about { grid-template-columns: 1fr 1.25fr; }
+    }
+
+    .about p { font-size: 1.08rem; }
+    .values {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+      gap: 18px;
+      margin-top: 40px;
+    }
+    .value { padding: 26px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); }
+    .value .icon { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 16px; background: var(--evergreen); border-radius: 50%; color: var(--gold); }
+    .value svg { width: 24px; height: 24px; }
+    .value h3 { margin-bottom: .3em; font-size: 1.2rem; }
+    .value p { margin: 0; color: var(--muted); }
+
+    /* Contact */
+    .cta {
+      position: relative;
+      overflow: hidden;
+      padding-block: 104px;
+      background: var(--evergreen);
+      color: var(--on-dark);
+      text-align: center;
+    }
+    .cta-wreath {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 720px;
+      height: 720px;
+      margin: -360px 0 0 -360px;
+      opacity: .13;
+      pointer-events: none;
+      animation: spin 90s linear infinite;
+    }
+    .cta-inner { position: relative; max-width: 640px; }
+    .cta .eyebrow { color: var(--gold); }
+    .cta p { color: var(--on-dark-muted); font-size: 1.1rem; }
+    .cta .btn { margin-top: .8rem; }
+
+    /* Footer */
+    .site-footer { background: var(--evergreen-deep); color: var(--on-dark-muted); font-size: .95rem; }
+    .site-footer .bar { padding-block: 28px; }
+    .site-footer .brand { color: var(--on-dark); font-size: 1.2rem; }
+    .site-footer p { margin: 0; }
+    .site-footer a:hover { color: var(--on-dark); }
+
+    /* Scroll reveal: hidden only when the script is running, staggered with --i */
+    .d1, .gallery figure:nth-child(4n+2), .cards > :nth-child(2), .values > :nth-child(2) { --i: 1; }
+    .d2, .gallery figure:nth-child(4n+3), .cards > :nth-child(3), .values > :nth-child(3) { --i: 2; }
+    .d3, .gallery figure:nth-child(4n+4) { --i: 3; }
+    .js .reveal:not(.is-visible) { opacity: 0; }
+    .js .reveal.is-visible { animation: rise .9s var(--ease) backwards; animation-delay: calc(var(--i, 0) * 110ms); }
+
+    @keyframes rise { from { opacity: 0; transform: translateY(28px); } }
+    @keyframes pop { from { opacity: 0; transform: scale(.86); } }
+    @keyframes fade { from { opacity: 0; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes bob { 50% { transform: translateY(-10px); } }
+    @keyframes fall { from { transform: translateY(-100%); } to { transform: translateY(8%); } }
+    @keyframes sway { from { transform: translateX(-16px) rotate(-30deg); } to { transform: translateX(16px) rotate(50deg); } }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .leaves { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="fb" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></symbol>
+    <symbol id="leaf" viewBox="0 0 24 24"><path d="M12 1C6 6 4.5 14 12 23c7.5-9 6-17 0-22z"/></symbol>
+    <symbol id="spark" viewBox="0 0 24 24"><path d="M12 0c.6 5.6 3.4 9.4 12 12-8.6 2.6-11.4 6.4-12 12-.6-5.6-3.4-9.4-12-12 8.6-2.6 11.4-6.4 12-12z"/></symbol>
+    <symbol id="recycle" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.7-5.6M20 12a8 8 0 0 1-13.7 5.6M18 2.5v4.2h-4.2M6 21.5v-4.2h4.2"/></symbol>
+    <symbol id="scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/></symbol>
+    <symbol id="sprig" viewBox="0 0 24 24"><path d="M5 19C5 10 10 5 20 4c-1 10-6 15-15 15zM5 19l8-8"/></symbol>
+    <symbol id="wreath" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="15" fill="none" stroke="#6f9a7e" stroke-width="7" stroke-linecap="round" stroke-dasharray="5 4.42"/>
+      <circle cx="24" cy="24" r="15" fill="none" stroke="#a9cdb2" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="2.6 6.82" stroke-dashoffset="-4.71"/>
+      <circle cx="20" cy="38.6" r="2.7" fill="#d24b3e"/>
+      <circle cx="25.6" cy="39.6" r="2.7" fill="#d24b3e"/>
+      <circle cx="23.2" cy="35.4" r="2.3" fill="#e8665a"/>
+    </symbol>
+  </svg>
+
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="#top"><svg aria-hidden="true"><use href="#wreath"/></svg><span>Wreath <em>Wonders</em></span></a>
+      <nav class="nav" aria-label="Main">
+        <a href="#christmas">Christmas</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+        <a class="btn btn-gold btn-small" href="https://www.facebook.com/share/19Hi72whA7/" target="_blank" rel="noopener">Message us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="leaves" aria-hidden="true"></div>
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow rise">Handmade wreaths &amp; decorations</p>
+          <h1 class="rise d1">Wreath <em>Wonders</em></h1>
+          <p class="lead rise d2">Floral wreaths, table decorations and free-standing pieces, each one individually crafted — for spring, autumn, Halloween and Christmas.</p>
+          <div class="actions rise d3">
+            <a class="btn btn-gold" href="https://www.facebook.com/share/19Hi72whA7/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#fb"/></svg>Message on Facebook</a>
+            <a class="btn btn-outline" href="#christmas">New for Christmas</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <svg class="ring" viewBox="0 0 500 500" aria-hidden="true">
+            <path id="ring-path" fill="none" d="M250,250 m-222,0 a222,222 0 1,1 444,0 a222,222 0 1,1 -444,0"/>
+            <text><textPath href="#ring-path" textLength="1394" lengthAdjust="spacing">Handmade wreaths • Table decorations • Individually crafted • </textPath></text>
+          </svg>
+          <img class="hero-photo" src="images/hero-witch-wreath.jpg" width="900" height="900" fetchpriority="high"
+               alt="Halloween wreath of red and pink peonies, sunflowers and autumn leaves, with a small witch figure in the centre">
+          <a class="hero-badge" href="#christmas">
+            <img src="images/poinsettia-close.jpg" width="360" height="361" alt="Red poinsettia Christmas arrangement">
+            <span>New for Christmas</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="ribbon" aria-hidden="true">
+      <div class="ribbon-track">
+        <span>Door wreaths</span><svg><use href="#spark"/></svg>
+        <span>Table decorations</span><svg><use href="#spark"/></svg>
+        <span>Free-standing pieces</span><svg><use href="#spark"/></svg>
+        <span>Repurposed &amp; recycled</span><svg><use href="#spark"/></svg>
+        <span>Halloween</span><svg><use href="#spark"/></svg>
+        <span>Christmas</span><svg><use href="#spark"/></svg>
+        <span>Spring florals</span><svg><use href="#spark"/></svg>
+        <span>Individually crafted</span><svg><use href="#spark"/></svg>
+        <span>Door wreaths</span><svg><use href="#spark"/></svg>
+        <span>Table decorations</span><svg><use href="#spark"/></svg>
+        <span>Free-standing pieces</span><svg><use href="#spark"/></svg>
+        <span>Repurposed &amp; recycled</span><svg><use href="#spark"/></svg>
+        <span>Halloween</span><svg><use href="#spark"/></svg>
+        <span>Christmas</span><svg><use href="#spark"/></svg>
+        <span>Spring florals</span><svg><use href="#spark"/></svg>
+        <span>Individually crafted</span><svg><use href="#spark"/></svg>
+      </div>
+    </div>
+
+    <section class="section" id="christmas">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow eyebrow-berry">Just in</p>
+          <h2>New for <em>Christmas</em></h2>
+          <p class="intro">The first of this year's individually crafted, free-standing Christmas decorations, some made with repurposed pieces.</p>
+        </div>
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card-media">
+              <img src="images/poinsettia-tin.jpg" width="578" height="578" loading="lazy" decoding="async"
+                   alt="Red poinsettias, pine and white roses arranged in a red tin on a windowsill">
+            </div>
+            <div class="card-body">
+              <span class="tag"><svg class="line-icon" aria-hidden="true"><use href="#recycle"/></svg>Repurposed tin</span>
+              <h3>Poinsettia tin</h3>
+              <p>Red poinsettias with pine and white roses, arranged in a repurposed tin.</p>
+            </div>
+          </article>
+          <article class="card reveal">
+            <div class="card-media">
+              <img src="images/gonk-frosted-tree.jpg" width="381" height="382" loading="lazy" decoding="async"
+                   alt="Small frosted Christmas tree with red berries and a grey Gonk on top">
+            </div>
+            <div class="card-body">
+              <span class="tag"><svg aria-hidden="true"><use href="#spark"/></svg>Fully lit</span>
+              <h3>Wee Gonk frosted tree</h3>
+              <p>A frosted Christmas tree with a wee Gonk on top and red berries. Fully lit, for indoors or outdoors.</p>
+            </div>
+          </article>
+          <article class="card reveal">
+            <div class="card-media">
+              <img src="images/gold-reindeer.jpg" width="376" height="382" loading="lazy" decoding="async"
+                   alt="Twig reindeer dressed with greenery and red berries">
+            </div>
+            <div class="card-body">
+              <span class="tag"><svg class="line-icon" aria-hidden="true"><use href="#recycle"/></svg>Repurposed</span>
+              <h3>Wee gold reindeer</h3>
+              <p>A repurposed reindeer, dressed with greenery and red berries and ready for Christmas.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="gallery">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Gallery</p>
+          <h2>Recent makes</h2>
+          <p class="intro">A few of the latest wreaths and table decorations. There are more on the Facebook page.</p>
+        </div>
+        <div class="gallery">
+          <figure class="reveal">
+            <div class="frame">
+              <img src="images/pumpkin-pine-wreath.jpg" width="720" height="720" loading="lazy" decoding="async"
+                   alt="Grapevine wreath dressed on one side with pine, eucalyptus, berries, pine cones and pumpkins">
+            </div>
+            <figcaption>Pumpkin and pine wreath</figcaption>
+          </figure>
+          <figure class="reveal">
+            <div class="frame">
+              <img src="images/boo-wreath.jpg" width="381" height="381" loading="lazy" decoding="async"
+                   alt="Halloween wreath of red and orange flowers and pine, with a skeleton hand and BOO! lettering">
+            </div>
+            <figcaption>‘Boo!’ Halloween wreath</figcaption>
+          </figure>
+          <figure class="reveal">
+            <div class="frame">
+              <img src="images/sunflower-rose-wreath.jpg" width="578" height="578" loading="lazy" decoding="async"
+                   alt="Round wreath of yellow roses, sunflowers and orange flowers, with a rainbow butterfly">
+            </div>
+            <figcaption>Sunflower and rose wreath</figcaption>
+          </figure>
+          <figure class="reveal">
+            <div class="frame">
+              <img src="images/haunted-house-decoration.jpg" width="381" height="382" loading="lazy" decoding="async"
+                   alt="Wooden house-shaped box of orange flowers and pumpkins, with a small skull-faced house at the front">
+            </div>
+            <figcaption>Haunted house table decoration</figcaption>
+          </figure>
+          <figure class="reveal">
+            <div class="frame">
+              <img src="images/spring-glow-wreath.jpg" width="578" height="585" loading="lazy" decoding="async"
+                   alt="Spring wreath of peach, orange and white flowers with a crystal hanging in the centre">
+            </div>
+            <figcaption>Spring Glow wreath with crystal charm</figcaption>
+          </figure>
+          <figure class="reveal">
+            <div class="frame">
+              <img src="images/halloween-arrangement.jpg" width="578" height="578" loading="lazy" decoding="async"
+                   alt="Pot arrangement of a sunflower, black roses and ivy, with a skeleton figure">
+            </div>
+            <figcaption>Free-standing Halloween arrangement</figcaption>
+          </figure>
+          <figure class="reveal">
+            <div class="frame">
+              <img src="images/peony-calla-lily-wreath.jpg" width="577" height="585" loading="lazy" decoding="async"
+                   alt="Wreath of pink and red peonies and burgundy calla lilies on a front door">
+            </div>
+            <figcaption>Peony and calla lily wreath</figcaption>
+          </figure>
+          <figure class="reveal">
+            <div class="frame">
+              <img src="images/autumn-gnome-wreath.jpg" width="577" height="578" loading="lazy" decoding="async"
+                   alt="Sunflower and rose wreath with a gnome whose beard is made of orange leaves">
+            </div>
+            <figcaption>Autumn gnome wreath</figcaption>
+          </figure>
+        </div>
+        <a class="more" href="https://www.facebook.com/share/19Hi72whA7/" target="_blank" rel="noopener">See more on Facebook →</a>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="about">
+          <div class="reveal">
+            <p class="eyebrow">About</p>
+            <h2>Made by hand, one piece at a&nbsp;time</h2>
+          </div>
+          <div class="reveal d1">
+            <p>Every piece at Wreath Wonders is individually crafted — door wreaths, table decorations and free-standing arrangements, with designs that follow the seasons.</p>
+            <p>Recycling is a big part of it too. Some pieces are built around repurposed items, like the tin holding this year's poinsettias or a wee reindeer dressed up for Christmas.</p>
+            <p>You'll also find Wreath Wonders at fairs. Follow the Facebook page for new makes and fair dates.</p>
+          </div>
+        </div>
+        <div class="values">
+          <div class="value reveal">
+            <span class="icon"><svg aria-hidden="true"><use href="#scissors"/></svg></span>
+            <h3>Individually crafted</h3>
+            <p>Every wreath and decoration is made by hand.</p>
+          </div>
+          <div class="value reveal">
+            <span class="icon"><svg aria-hidden="true"><use href="#recycle"/></svg></span>
+            <h3>Repurposed &amp; recycled</h3>
+            <p>Old tins and decorations given a new life.</p>
+          </div>
+          <div class="value reveal">
+            <span class="icon"><svg aria-hidden="true"><use href="#sprig"/></svg></span>
+            <h3>For every season</h3>
+            <p>Spring florals, autumn colours, Halloween and Christmas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <svg class="cta-wreath" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="80" fill="none" stroke="#9cc2a6" stroke-width="22" stroke-linecap="round" stroke-dasharray="8 12.94"/>
+        <circle cx="100" cy="100" r="80" fill="none" stroke="#d1ad66" stroke-width="10" stroke-linecap="round" stroke-dasharray="3 17.94" stroke-dashoffset="-10.47"/>
+      </svg>
+      <div class="wrap cta-inner reveal">
+        <p class="eyebrow">Get in touch</p>
+        <h2>Fancy one for your door?</h2>
+        <p>Send a message through the Facebook page to ask about a wreath or decoration.</p>
+        <a class="btn btn-gold" href="https://www.facebook.com/share/19Hi72whA7/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#fb"/></svg>Message on Facebook</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap bar">
+      <a class="brand" href="#top"><svg aria-hidden="true"><use href="#wreath"/></svg><span>Wreath <em>Wonders</em></span></a>
+      <p>© 2026 Wreath Wonders · Individually crafted wreaths &amp; decorations</p>
+      <a href="https://www.facebook.com/share/19Hi72whA7/" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Fade sections in as they scroll into view
+      const items = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(entries => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          }
+        }, { rootMargin: '0px 0px -10% 0px' });
+        items.forEach(item => observer.observe(item));
+      } else {
+        items.forEach(item => item.classList.add('is-visible'));
+      }
+
+      // Shadow under the sticky header once the page has scrolled
+      const header = document.querySelector('.site-header');
+      const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Leaves drifting down behind the hero
+      const layer = document.querySelector('.leaves');
+      if (!reduceMotion && layer) {
+        const colours = ['#d1ad66', '#9cc2a6', '#e9d8b0', '#c9705a', '#7fa48b'];
+        const count = window.innerWidth < 700 ? 9 : 16;
+        for (let i = 0; i < count; i++) {
+          const duration = 12 + Math.random() * 10;
+          const leaf = document.createElement('span');
+          leaf.className = 'leaf';
+          leaf.style.cssText = `--x:${(Math.random() * 100).toFixed(1)}%;--s:${(10 + Math.random() * 12).toFixed(1)}px;` +
+            `--d:${duration.toFixed(1)}s;--delay:${(-Math.random() * duration).toFixed(1)}s;` +
+            `--c:${colours[i % colours.length]};--o:${(0.3 + Math.random() * 0.45).toFixed(2)}`;
+          leaf.innerHTML = '<svg viewBox="0 0 24 24"><use href="#leaf"/></svg>';
+          layer.append(leaf);
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
