@@ -6,10 +6,10 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#1f3a2d">
   <title>Wreath Wonders · Individually crafted wreaths &amp; decorations</title>
-  <meta name="description" content="Individually crafted floral wreaths, table decorations and free-standing pieces for spring, autumn, Halloween and Christmas.">
+  <meta name="description" content="Individually crafted floral wreaths and decorations, each one unique: a true one of one. 10% of every sale goes to Pretty ’n’ Pink, a breast cancer charity.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Wreath Wonders">
-  <meta property="og:description" content="Individually crafted wreaths, table decorations and free-standing Christmas decorations.">
+  <meta property="og:description" content="Individually crafted wreaths and decorations, every one a true one of one.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='15' fill='none' stroke='%236f9a7e' stroke-width='7' stroke-linecap='round' stroke-dasharray='5 4.42'/%3E%3Ccircle cx='24' cy='24' r='15' fill='none' stroke='%23a9cdb2' stroke-width='3.4' stroke-linecap='round' stroke-dasharray='2.6 6.82' stroke-dashoffset='-4.71'/%3E%3Ccircle cx='20' cy='38.6' r='2.7' fill='%23d24b3e'/%3E%3Ccircle cx='25.6' cy='39.6' r='2.7' fill='%23d24b3e'/%3E%3Ccircle cx='23.2' cy='35.4' r='2.3' fill='%23e8665a'/%3E%3C/svg%3E">
   <link rel="preload" href="fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <script>document.documentElement.classList.add('js');</script>
@@ -45,6 +45,8 @@
       --gold-deep: #8a6420;
       --berry: #a3322b;
       --blush: #f4e6d6;
+      --pink: #c2316b;
+      --pink-soft: #fde4ee;
       --on-dark: #f6f0e3;
       --on-dark-muted: rgb(246 240 227 / .74);
       --radius: 20px;
@@ -64,6 +66,8 @@
         --gold-deep: #d9b878;
         --berry: #e58f7f;
         --blush: #1f2d25;
+        --pink: #f4a7c4;
+        --pink-soft: #3a2230;
       }
     }
 
@@ -100,6 +104,7 @@
     a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 
     .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
     .wrap { max-width: 1160px; margin-inline: auto; padding-inline: 16px; }
 
@@ -173,22 +178,103 @@
     .brand svg { flex: none; width: 34px; height: 34px; }
     .brand em { color: var(--gold); }
     .nav { display: flex; align-items: center; gap: 24px; }
-    .nav a:not(.btn) { display: none; color: var(--on-dark-muted); font-weight: 500; text-decoration: none; transition: color .2s; }
-    .nav a:not(.btn):hover { color: var(--on-dark); }
+    .nav > a:not(.btn) { display: none; color: var(--on-dark-muted); font-weight: 500; text-decoration: none; transition: color .2s; }
+    .nav > a:not(.btn):hover { color: var(--on-dark); }
 
     @media (min-width: 760px) {
-      .nav a:not(.btn) { display: inline; }
+      .nav > a:not(.btn) { display: inline; }
     }
 
     @media (max-width: 479px) {
       .site-header .bar { gap: 12px; }
+      .site-header .nav { gap: 10px; }
       .site-header .brand { gap: 8px; font-size: 1.1rem; }
       .site-header .brand svg { width: 28px; height: 28px; }
       .site-header .btn-small { padding: .5em .95em; font-size: .85rem; }
     }
 
-    @media (max-width: 359px) {
+    @media (max-width: 399px) {
       .site-header .brand svg { display: none; }
+      .site-header .btn-small { padding: .45em .85em; }
+    }
+
+    @media (max-width: 359px) {
+      .site-header .bar, .site-header .nav { gap: 8px; }
+      .site-header .brand { font-size: 1rem; }
+    }
+
+    /* The charity we support: a small mark in the header that opens a dropdown */
+    .charity { position: relative; }
+    .charity summary {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      list-style: none;
+      cursor: pointer;
+      background: #fde4ee;
+      border-radius: 50%;
+      color: #c2316b;
+      box-shadow: 0 0 0 2px rgb(246 240 227 / .25);
+      transition: box-shadow .3s, transform .3s var(--ease);
+    }
+    .charity summary::-webkit-details-marker { display: none; }
+    .charity summary:hover, .charity[open] summary { box-shadow: 0 0 0 3px #f4a7c4; transform: scale(1.06); }
+    .charity summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .charity summary svg { width: 22px; height: 22px; }
+    .charity-panel {
+      position: absolute;
+      top: calc(100% + 14px);
+      right: 0;
+      width: min(340px, calc(100vw - 32px));
+      padding: 20px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 30px 60px -20px rgb(0 0 0 / .45);
+      color: var(--ink);
+      font-size: .95rem;
+      line-height: 1.55;
+      animation: drop .3s var(--ease);
+    }
+    .charity-panel::before {
+      content: "";
+      position: absolute;
+      top: -7px;
+      right: 14px;
+      width: 12px;
+      height: 12px;
+      background: var(--paper);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+      transform: rotate(45deg);
+    }
+    .charity-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding: 12px 14px;
+      background: var(--pink-soft);
+      border-radius: 12px;
+      color: var(--pink);
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+    }
+    .charity-banner svg { flex: none; width: 28px; height: 28px; }
+    .charity-panel p { margin: 0 0 .8em; color: var(--muted); }
+    .charity-panel .pledge { color: var(--ink); }
+    .charity-panel a { color: var(--pink); font-weight: 700; }
+
+    /* On phones the dropdown spans the screen just under the header */
+    @media (max-width: 479px) {
+      .charity-panel { position: fixed; top: 72px; right: 16px; left: 16px; width: auto; }
+    }
+
+    @media (max-width: 399px) {
+      .charity summary { width: 34px; height: 34px; }
+      .charity-panel::before { right: 11px; }
     }
 
     /* Hero */
@@ -206,9 +292,27 @@
       .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 56px; }
     }
 
-    .hero .eyebrow, .hero h1 em { color: var(--gold); }
+    .hero h1 { margin-bottom: .25em; }
+    .hero h1 em, .hero .tagline em { color: var(--gold); }
+    .hero .tagline { margin-bottom: .8em; font-family: var(--serif); font-size: clamp(1.4rem, 3.6vw, 1.8rem); font-weight: 500; line-height: 1.25; text-wrap: balance; }
     .hero .lead { max-width: 31em; color: var(--on-dark-muted); font-size: clamp(1.1rem, 2.4vw, 1.25rem); }
     .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 2rem; }
+    .charity-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin: 26px 0 0;
+      padding: 12px 18px 12px 14px;
+      background: rgb(255 255 255 / .06);
+      border: 1px solid rgb(246 240 227 / .16);
+      border-radius: 16px;
+      color: var(--on-dark-muted);
+      font-size: .95rem;
+      line-height: 1.45;
+    }
+    .charity-note svg { flex: none; width: 26px; height: 26px; color: #f4a7c4; }
+    .charity-note strong { color: var(--on-dark); }
+    .charity-note a { color: #f4a7c4; font-weight: 600; }
 
     .hero-art { position: relative; width: min(100%, 520px); aspect-ratio: 1; margin-inline: auto; }
     .ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: fade 1.4s ease .5s both, spin 60s linear infinite; }
@@ -296,10 +400,20 @@
     .section-head { margin-bottom: 44px; }
 
     /* New for Christmas */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-      gap: 22px;
+    .cards { display: grid; gap: 22px; }
+
+    @media (min-width: 600px) and (max-width: 899px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .cards > :last-child:nth-child(odd) { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+      .cards > :last-child:nth-child(odd) .card-body { align-self: center; }
+    }
+
+    /* Desktop: the two featured wreaths on top, the three smaller pieces below */
+    @media (min-width: 900px) {
+      .cards { grid-template-columns: repeat(6, 1fr); }
+      .card { grid-column: span 2; }
+      .card.feature { grid-column: span 3; }
+      .card.feature h3 { font-size: 1.55rem; }
     }
     .card {
       overflow: hidden;
@@ -397,9 +511,10 @@
     .site-footer a:hover { color: var(--on-dark); }
 
     /* Scroll reveal: hidden only when the script is running, staggered with --i */
-    .d1, .gallery figure:nth-child(4n+2), .cards > :nth-child(2), .values > :nth-child(2) { --i: 1; }
-    .d2, .gallery figure:nth-child(4n+3), .cards > :nth-child(3), .values > :nth-child(3) { --i: 2; }
+    .d1, .gallery figure:nth-child(4n+2), .cards > :nth-child(2), .cards > :nth-child(4), .values > :nth-child(2) { --i: 1; }
+    .d2, .gallery figure:nth-child(4n+3), .cards > :nth-child(5), .values > :nth-child(3) { --i: 2; }
     .d3, .gallery figure:nth-child(4n+4) { --i: 3; }
+    .d4 { --i: 4; }
     .js .reveal:not(.is-visible) { opacity: 0; }
     .js .reveal.is-visible { animation: rise .9s var(--ease) backwards; animation-delay: calc(var(--i, 0) * 110ms); }
 
@@ -411,6 +526,7 @@
     @keyframes fall { from { transform: translateY(-100%); } to { transform: translateY(8%); } }
     @keyframes sway { from { transform: translateX(-16px) rotate(-30deg); } to { transform: translateX(16px) rotate(50deg); } }
     @keyframes marquee { to { transform: translateX(-50%); } }
+    @keyframes drop { from { opacity: 0; transform: translateY(-8px); } }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -427,6 +543,7 @@
     <symbol id="recycle" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.7-5.6M20 12a8 8 0 0 1-13.7 5.6M18 2.5v4.2h-4.2M6 21.5v-4.2h4.2"/></symbol>
     <symbol id="scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12"/></symbol>
     <symbol id="sprig" viewBox="0 0 24 24"><path d="M5 19C5 10 10 5 20 4c-1 10-6 15-15 15zM5 19l8-8"/></symbol>
+    <symbol id="ribbon" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14.2C9.3 11.6 8 9.3 8 6.9 8 4.5 9.8 2.8 12 2.8s4 1.7 4 4.1c0 2.4-1.3 4.7-4 7.3z"/><path d="M12 14.2 7 21.4M12 14.2l5 7.2"/></g></symbol>
     <symbol id="wreath" viewBox="0 0 48 48">
       <circle cx="24" cy="24" r="15" fill="none" stroke="#6f9a7e" stroke-width="7" stroke-linecap="round" stroke-dasharray="5 4.42"/>
       <circle cx="24" cy="24" r="15" fill="none" stroke="#a9cdb2" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="2.6 6.82" stroke-dashoffset="-4.71"/>
@@ -444,6 +561,15 @@
         <a href="#gallery">Gallery</a>
         <a href="#about">About</a>
         <a class="btn btn-gold btn-small" href="https://www.facebook.com/share/19Hi72whA7/" target="_blank" rel="noopener">Message us</a>
+        <details class="charity">
+          <summary title="Pretty ’n’ Pink"><svg aria-hidden="true"><use href="#ribbon"/></svg><span class="sr-only">Pretty ’n’ Pink, the charity we support</span></summary>
+          <div class="charity-panel">
+            <div class="charity-banner"><svg aria-hidden="true"><use href="#ribbon"/></svg>Pretty ’n’ Pink</div>
+            <p>Pretty ’n’ Pink is a Northern Ireland charity supporting people with breast cancer and their families, with help such as travel to hospital appointments, post-surgery clothing, home heating bills and counselling.</p>
+            <p class="pledge"><strong>10% of every Wreath Wonders sale</strong> goes to Pretty ’n’ Pink.</p>
+            <a href="https://prettynpink.org" target="_blank" rel="noopener">Visit prettynpink.org →</a>
+          </div>
+        </details>
       </nav>
     </div>
   </header>
@@ -453,18 +579,22 @@
       <div class="leaves" aria-hidden="true"></div>
       <div class="wrap hero-grid">
         <div>
-          <p class="eyebrow rise">Handmade wreaths &amp; decorations</p>
-          <h1 class="rise d1">Wreath <em>Wonders</em></h1>
-          <p class="lead rise d2">Floral wreaths, table decorations and free-standing pieces, each one individually crafted — for spring, autumn, Halloween and Christmas.</p>
+          <h1 class="rise">Wreath <em>Wonders</em></h1>
+          <p class="tagline rise d1">Every wreath is unique&nbsp;— a true <em>one&nbsp;of&nbsp;one</em>.</p>
+          <p class="lead rise d2">Floral wreaths, table decorations and free-standing pieces, individually crafted for spring, autumn, Halloween and Christmas.</p>
           <div class="actions rise d3">
             <a class="btn btn-gold" href="https://www.facebook.com/share/19Hi72whA7/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#fb"/></svg>Message on Facebook</a>
             <a class="btn btn-outline" href="#christmas">New for Christmas</a>
           </div>
+          <p class="charity-note rise d4">
+            <svg aria-hidden="true"><use href="#ribbon"/></svg>
+            <span><strong>10% of every sale</strong> goes to <a href="https://prettynpink.org" target="_blank" rel="noopener">Pretty&nbsp;’n’&nbsp;Pink</a>, a breast cancer charity.</span>
+          </p>
         </div>
         <div class="hero-art">
           <svg class="ring" viewBox="0 0 500 500" aria-hidden="true">
             <path id="ring-path" fill="none" d="M250,250 m-222,0 a222,222 0 1,1 444,0 a222,222 0 1,1 -444,0"/>
-            <text><textPath href="#ring-path" textLength="1394" lengthAdjust="spacing">Handmade wreaths • Table decorations • Individually crafted • </textPath></text>
+            <text><textPath href="#ring-path" textLength="1394" lengthAdjust="spacing">Every wreath unique • One of one • Individually crafted • </textPath></text>
           </svg>
           <img class="hero-photo" src="images/hero-witch-wreath.jpg" width="900" height="900" fetchpriority="high"
                alt="Halloween wreath of red and pink peonies, sunflowers and autumn leaves, with a small witch figure in the centre">
@@ -485,7 +615,7 @@
         <span>Halloween</span><svg><use href="#spark"/></svg>
         <span>Christmas</span><svg><use href="#spark"/></svg>
         <span>Spring florals</span><svg><use href="#spark"/></svg>
-        <span>Individually crafted</span><svg><use href="#spark"/></svg>
+        <span>Every wreath one of one</span><svg><use href="#spark"/></svg>
         <span>Door wreaths</span><svg><use href="#spark"/></svg>
         <span>Table decorations</span><svg><use href="#spark"/></svg>
         <span>Free-standing pieces</span><svg><use href="#spark"/></svg>
@@ -493,7 +623,7 @@
         <span>Halloween</span><svg><use href="#spark"/></svg>
         <span>Christmas</span><svg><use href="#spark"/></svg>
         <span>Spring florals</span><svg><use href="#spark"/></svg>
-        <span>Individually crafted</span><svg><use href="#spark"/></svg>
+        <span>Every wreath one of one</span><svg><use href="#spark"/></svg>
       </div>
     </div>
 
@@ -502,9 +632,31 @@
         <div class="section-head reveal">
           <p class="eyebrow eyebrow-berry">Just in</p>
           <h2>New for <em>Christmas</em></h2>
-          <p class="intro">The first of this year's individually crafted, free-standing Christmas decorations, some made with repurposed pieces.</p>
+          <p class="intro">This year's individually crafted Christmas wreaths and free-standing decorations. Each one is unique, and some are made with repurposed pieces.</p>
         </div>
         <div class="cards">
+          <article class="card feature reveal">
+            <div class="card-media">
+              <img src="images/red-berry-wreath.jpg" width="900" height="900" loading="lazy" decoding="async"
+                   alt="Wreath of red and frosted berries with large green leaves on a twig base, hanging on a front door">
+            </div>
+            <div class="card-body">
+              <span class="tag"><svg aria-hidden="true"><use href="#spark"/></svg>Frosted berries</span>
+              <h3>Red berry wreath</h3>
+              <p>Clusters of red and frosted berries with deep green leaves on a twig base.</p>
+            </div>
+          </article>
+          <article class="card feature reveal">
+            <div class="card-media">
+              <img src="images/rose-poinsettia-wreath.jpg" width="900" height="900" loading="lazy" decoding="async"
+                   alt="Pine wreath with red roses, poinsettias, pine cones, cinnamon sticks and white berries, lit with warm fairy lights">
+            </div>
+            <div class="card-body">
+              <span class="tag"><svg aria-hidden="true"><use href="#spark"/></svg>Fairy lights</span>
+              <h3>Rose &amp; poinsettia wreath</h3>
+              <p>Pine with red roses, poinsettias, pine cones, cinnamon and white berries, lit with warm fairy lights.</p>
+            </div>
+          </article>
           <article class="card reveal">
             <div class="card-media">
               <img src="images/poinsettia-tin.jpg" width="578" height="578" loading="lazy" decoding="async"
@@ -619,7 +771,7 @@
             <h2>Made by hand, one piece at a&nbsp;time</h2>
           </div>
           <div class="reveal d1">
-            <p>Every piece at Wreath Wonders is individually crafted — door wreaths, table decorations and free-standing arrangements, with designs that follow the seasons.</p>
+            <p>Every piece at Wreath Wonders is individually crafted, so no two are the same: each wreath is a true one of one. You'll find door wreaths, table decorations and free-standing arrangements, with designs that follow the seasons.</p>
             <p>Recycling is a big part of it too. Some pieces are built around repurposed items, like the tin holding this year's poinsettias or a wee reindeer dressed up for Christmas.</p>
             <p>You'll also find Wreath Wonders at fairs. Follow the Facebook page for new makes and fair dates.</p>
           </div>
@@ -627,8 +779,8 @@
         <div class="values">
           <div class="value reveal">
             <span class="icon"><svg aria-hidden="true"><use href="#scissors"/></svg></span>
-            <h3>Individually crafted</h3>
-            <p>Every wreath and decoration is made by hand.</p>
+            <h3>One of one</h3>
+            <p>Every wreath is unique, individually crafted by hand.</p>
           </div>
           <div class="value reveal">
             <span class="icon"><svg aria-hidden="true"><use href="#recycle"/></svg></span>
@@ -685,6 +837,18 @@
       } else {
         items.forEach(item => item.classList.add('is-visible'));
       }
+
+      // Close the charity dropdown when tapping elsewhere or pressing Escape
+      const charity = document.querySelector('.charity');
+      document.addEventListener('click', event => {
+        if (charity.open && !charity.contains(event.target)) charity.open = false;
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && charity.open) {
+          charity.open = false;
+          charity.querySelector('summary').focus();
+        }
+      });
 
       // Shadow under the sticky header once the page has scrolled
       const header = document.querySelector('.site-header');
