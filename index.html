@@ -402,13 +402,24 @@
     /* New for Christmas */
     .cards { display: grid; gap: 22px; }
 
+    /* Phones: featured wreaths full width, the smaller pieces two to a row */
+    @media (min-width: 360px) and (max-width: 599px) {
+      .cards { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .card.feature { grid-column: 1 / -1; }
+      .card:not(.feature) .card-body { padding: 14px 14px 16px; }
+      .card:not(.feature) h3 { font-size: 1.05rem; }
+      .card:not(.feature) .card-body p { font-size: .86rem; line-height: 1.45; }
+      .card:not(.feature) .tag { font-size: .7rem; }
+      .card:not(.feature) .inset span { display: none; }
+    }
+
     @media (min-width: 600px) and (max-width: 899px) {
       .cards { grid-template-columns: repeat(2, 1fr); }
       .cards > :last-child:nth-child(odd) { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
       .cards > :last-child:nth-child(odd) .card-body { align-self: center; }
     }
 
-    /* Desktop: the two featured wreaths on top, the three smaller pieces below */
+    /* Desktop: the two featured wreaths on top, the smaller pieces three to a row */
     @media (min-width: 900px) {
       .cards { grid-template-columns: repeat(6, 1fr); }
       .card { grid-column: span 2; }
@@ -423,15 +434,40 @@
       transition: transform .5s var(--ease), box-shadow .5s var(--ease);
     }
     .card:hover { transform: translateY(-6px); box-shadow: 0 30px 50px -30px rgb(40 30 20 / .4); }
-    .card-media { aspect-ratio: 1; overflow: hidden; }
-    .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
-    .card:hover .card-media img { transform: scale(1.06); }
+    .card-media { position: relative; aspect-ratio: 1; overflow: hidden; }
+    .card-media > img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
+    .card:hover .card-media > img { transform: scale(1.06); }
+
+    /* A second small photo of the same piece, e.g. used as a centrepiece or lit up */
+    .inset { position: absolute; right: 4%; bottom: 4%; width: 34%; text-align: center; }
+    .inset img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: 4px solid var(--paper);
+      border-radius: 50%;
+      box-shadow: 0 14px 28px -12px rgb(0 0 0 / .6);
+    }
+    .inset span {
+      position: relative;
+      display: inline-block;
+      margin-top: -12px;
+      padding: .25em .75em;
+      white-space: nowrap;
+      background: var(--paper);
+      border-radius: 999px;
+      box-shadow: 0 6px 14px -8px rgb(0 0 0 / .5);
+      color: var(--ink);
+      font-size: .72rem;
+      font-weight: 700;
+    }
     .card-body { padding: 22px 24px 26px; }
     .card-body p { margin: 0; color: var(--muted); }
     .tag {
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      max-width: 100%;
       margin-bottom: 12px;
       padding: .32em .8em;
       background: var(--blush);
@@ -511,8 +547,8 @@
     .site-footer a:hover { color: var(--on-dark); }
 
     /* Scroll reveal: hidden only when the script is running, staggered with --i */
-    .d1, .gallery figure:nth-child(4n+2), .cards > :nth-child(2), .cards > :nth-child(4), .values > :nth-child(2) { --i: 1; }
-    .d2, .gallery figure:nth-child(4n+3), .cards > :nth-child(5), .values > :nth-child(3) { --i: 2; }
+    .d1, .gallery figure:nth-child(4n+2), .cards > :nth-child(2), .cards > :nth-child(3n+4), .values > :nth-child(2) { --i: 1; }
+    .d2, .gallery figure:nth-child(4n+3), .cards > :nth-child(3n+5), .values > :nth-child(3) { --i: 2; }
     .d3, .gallery figure:nth-child(4n+4) { --i: 3; }
     .d4 { --i: 4; }
     .js .reveal:not(.is-visible) { opacity: 0; }
@@ -655,6 +691,49 @@
               <span class="tag"><svg aria-hidden="true"><use href="#spark"/></svg>Fairy lights</span>
               <h3>Rose &amp; poinsettia wreath</h3>
               <p>Pine with red roses, poinsettias, pine cones, cinnamon and white berries, lit with warm fairy lights.</p>
+            </div>
+          </article>
+          <article class="card reveal">
+            <div class="card-media">
+              <img src="images/eucalyptus-berry-wreath.jpg" width="768" height="768" loading="lazy" decoding="async"
+                   alt="Round wreath of eucalyptus, red berries, gold leaves and small white flowers, hanging on a wall">
+              <div class="inset">
+                <img src="images/eucalyptus-candle-centrepiece.jpg" width="320" height="320" loading="lazy" decoding="async"
+                     alt="The same wreath laid flat on a table around a lit candle">
+                <span>As a centrepiece</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <span class="tag"><svg aria-hidden="true"><use href="#spark"/></svg>Multipurpose</span>
+              <h3>Eucalyptus &amp; berry wreath</h3>
+              <p>Eucalyptus, red berries, gold leaves and small white flowers, fully lit. Hang it up, or lay it round a candle as a centrepiece. Just over 40&nbsp;cm (16&nbsp;in) across.</p>
+            </div>
+          </article>
+          <article class="card reveal">
+            <div class="card-media">
+              <img src="images/fern-red-flower-wreath.jpg" width="378" height="378" loading="lazy" decoding="async"
+                   alt="Round wreath of ferns, red flowers, berries and pine cones">
+            </div>
+            <div class="card-body">
+              <span class="tag"><svg aria-hidden="true"><use href="#spark"/></svg>Multipurpose</span>
+              <h3>Fern &amp; red flower wreath</h3>
+              <p>Ferns, red flowers, berries and pine cones, fully lit. Use it as a hanging wreath or a table centrepiece. Just over 40&nbsp;cm (16&nbsp;in) across.</p>
+            </div>
+          </article>
+          <article class="card reveal">
+            <div class="card-media">
+              <img src="images/reused-light-up-star.jpg" width="768" height="768" loading="lazy" decoding="async"
+                   alt="Wooden star with a cut-out snowy village scene, dressed with pine cones, a gold bauble and frosted red berries">
+              <div class="inset">
+                <img src="images/reused-star-lit.jpg" width="320" height="320" loading="lazy" decoding="async"
+                     alt="The same star glowing with its lights switched on">
+                <span>Lit up</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <span class="tag"><svg class="line-icon" aria-hidden="true"><use href="#recycle"/></svg>Reused</span>
+              <h3>Light-up wooden star</h3>
+              <p>A reused wooden star with a cut-out village scene, dressed with pine cones, a gold bauble and frosted berries. Lights fitted to brighten any room.</p>
             </div>
           </article>
           <article class="card reveal">
